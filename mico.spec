@@ -7,6 +7,7 @@ License:	GPL/LGPL
 Group:		Libraries
 Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
 # Source0-md5:	669d98ec5da2f6c50937a2a25e797eec
+Patch0:		%{name}-libdir.patch
 URL:		http://www.mico.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,6 +58,7 @@ Biblioteki statyczne MICO.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 %{__autoconf}
