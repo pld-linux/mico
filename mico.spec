@@ -8,10 +8,8 @@ Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
 Patch0:		mico-DESTDIR.patch
-Patch1:		mico-qt.patch
-Patch2:		mico-orb_all.patch
-Patch3:		mico-gcc295.patch
-Patch4:		mico-gtk+.m4.patch
+Patch1:		mico-gcc295.patch
+Patch2:		mico-gtk+.m4.patch
 URL:		http://www.mico.org/
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -60,9 +58,7 @@ Biblioteki statyczne MICO.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+%patch2 -p1
 
 %build
 autoconf
