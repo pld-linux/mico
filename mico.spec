@@ -19,8 +19,6 @@ BuildRequires:	tcl-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr
-
 %description
 MICO (MICO Is CORBA) is a freely available and fully compliant
 implementation of the CORBA 2.3 standard Object Request Broker. The
