@@ -8,8 +8,8 @@ Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
-Patch0:		mico-DESTDIR.patch
-Patch1:		mico-gcc295.patch
+Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-gcc295.patch
 Patch2:		mico-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	libstdc++-devel
@@ -100,7 +100,7 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man?/* \
 %postun -p /sbin/ldconfig
 
 %clean
-rm -fr $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
