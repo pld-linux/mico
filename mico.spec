@@ -95,8 +95,3 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mico-shld
 %{_mandir}/man[158]/*.gz
 %{_includedir}/*
-
-%changelog
-* Mon Jul  5 1999 Micha³ Zawalich <michalz@box43.gnet.pl>
-  [2.2.7-1]
-- initial version.
