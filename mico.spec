@@ -38,7 +38,7 @@ Requires:	%{name} = %{version}
 Contains the files nessesary to develop applications using MICO:
 header files, man pages and ps documentation.
 
-%description -l pl devel
+%description devel -l pl
 Zawiera niezbêdne pliki do tworzenia i kompilacji aplikacji
 korzystaj±cych z MICO jak pliki nag³ówkowe oraz dokumentacjê.
 
@@ -51,7 +51,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static libraries for writing MICO applications.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne MICO.
 
 %prep
