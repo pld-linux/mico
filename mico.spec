@@ -61,7 +61,7 @@ Biblioteki statyczne MICO.
 %patch2 -p1
 
 %build
-autoconf
+%{__autoconf}
 CXXFLAGS="%{rpmcflags} `gtk-config --cflags` -fexceptions"
 %configure \
 	--enable-final \
