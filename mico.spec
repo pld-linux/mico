@@ -6,6 +6,7 @@ Release:	5
 License:	GPL/LGPL
 Group:		Libraries
 Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
+# Source0-md5:	787e1bb9e49d41e62d560c0a86046782
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-gcc295.patch
 Patch2:		%{name}-gtk+.m4.patch
