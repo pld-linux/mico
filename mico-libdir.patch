@@ -1,0 +1,148 @@
+diff -ur mico.old/admin/Makefile mico/admin/Makefile
+--- mico.old/admin/Makefile	2004-08-11 23:53:05.000000000 +0200
++++ mico/admin/Makefile	2004-08-11 23:56:25.000000000 +0200
+@@ -33,9 +33,9 @@
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< $(CONFLIBS) -o $@
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.sh $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.csh $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(libdir)
++	$(ISCRIPTCMD) mico-setup.sh $(DESTDIR)$(libdir)
++	$(ISCRIPTCMD) mico-setup.csh $(DESTDIR)$(libdir)
+ 	$(IDIRCMD) $(INSTDIR)/bin
+ 	test -f mico-c++   && $(ISCRIPTCMD) mico-c++   $(INSTDIR)/bin
+ 	test -f mico-ld    && $(ISCRIPTCMD) mico-ld    $(INSTDIR)/bin
+@@ -48,8 +48,8 @@
+ 	test -f mico-config && $(ISCRIPTCMD) mico-config $(INSTDIR)/bin
+ 
+ install-cd: install
+-	$(ISCRIPTCMD) mico-setup.sh.in $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.csh.in $(INSTDIR)/lib
++	$(ISCRIPTCMD) mico-setup.sh.in $(DESTDIR)$(libdir)
++	$(ISCRIPTCMD) mico-setup.csh.in $(DESTDIR)$(libdir)
+ 
+ clean:
+ #	rm -f mico-setup.sh mico-setup.csh
+diff -ur mico.old/auxdir/Makefile mico/auxdir/Makefile
+--- mico.old/auxdir/Makefile	2004-08-11 23:53:05.000000000 +0200
++++ mico/auxdir/Makefile	2004-08-11 23:56:47.000000000 +0200
+@@ -225,12 +225,12 @@
+ 	-$(RM) *.orig
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(libdir)
+ ifeq ($(HAVE_SHARED), yes)
+-	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
++	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(DESTDIR)$(libdir); done
+ endif
+ ifeq ($(HAVE_STATIC), yes)
+-	@for i in $(STATIC_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
++	@for i in $(STATIC_LIBS); do $(ILIBCMD) $$i $(DESTDIR)$(libdir); done
+ endif
+ 
+ install-cd: install
+diff -ur mico.old/ccm/Makefile mico/ccm/Makefile
+--- mico.old/ccm/Makefile	2004-08-11 23:53:05.000000000 +0200
++++ mico/ccm/Makefile	2004-08-11 23:56:56.000000000 +0200
+@@ -133,10 +133,10 @@
+ 	$(IBINCMD) mico-ccmd $(INSTDIR)/bin
+ 	$(IBINCMD) ccmload $(INSTDIR)/bin
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmicoccm$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicoccm$(VERSION).a $(DESTDIR)$(libdir)
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+-	$(ILIBCMD) libmicoccm$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmicoccm$(VERSION).$(SOEXT) $(DESTDIR)$(libdir)
+ endif
+ endif
+ 
+diff -ur mico.old/coss/Makefile mico/coss/Makefile
+--- mico.old/coss/Makefile	2004-08-11 23:53:05.000000000 +0200
++++ mico/coss/Makefile	2004-08-11 23:57:13.000000000 +0200
+@@ -259,15 +259,15 @@
+ .depend:
+ 	for i in $(SUBDIRS); do $(MAKE) -C $$i .depend || exit 1; done
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(libdir)
+ ifneq ($(strip $(SUBDIRS)),)
+ ifeq ($(HAVE_SHARED_EXCEPTS), yes)
+-	$(ILIBCMD) libmicocoss$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).$(SOEXT) $(DESTDIR)$(libdir)
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmicocoss$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).a $(DESTDIR)$(libdir)
+ endif
+ else
+-	$(ILIBCMD) libmicocoss$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).a $(DESTDIR)$(libdir)
+ endif
+ 	for i in $(SUBDIRS); do $(MAKE) -C $$i install || exit 1; done	
+ endif
+diff -ur mico.old/ir/Makefile mico/ir/Makefile
+--- mico.old/ir/Makefile	2004-08-11 23:53:11.000000000 +0200
++++ mico/ir/Makefile	2004-08-11 23:57:21.000000000 +0200
+@@ -163,10 +163,10 @@
+ 	$(IDIRCMD) $(INSTDIR)/bin
+ 	$(IBINCMD) ird $(INSTDIR)/bin
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmicoir$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicoir$(VERSION).a $(DESTDIR)$(libdir)
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+-	$(ILIBCMD) libmicoir$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmicoir$(VERSION).$(SOEXT) $(DESTDIR)$(libdir)
+ endif
+ 
+ install-cd: install
+diff -ur mico.old/MakeVars.in mico/MakeVars.in
+--- mico.old/MakeVars.in	2004-08-11 23:53:05.000000000 +0200
++++ mico/MakeVars.in	2004-08-11 23:55:39.000000000 +0200
+@@ -23,9 +23,11 @@
+ 
+ prefix		= @prefix@
+ exec_prefix	= @exec_prefix@
++libdir		= @libdir@
+ SRCDIR		= @ABSSRCDIR@
+ INSTDIR		= @ABSEXECDIR@
+ SHARED_INSTDIR	= @ABSSHRDDIR@
++DESTDIR		=
+ 
+ OSTYPE          = @OSTYPE@
+ # We need the compiler type, not just the os
+diff -ur mico.old/orb/Makefile mico/orb/Makefile
+--- mico.old/orb/Makefile	2004-08-11 23:53:11.000000000 +0200
++++ mico/orb/Makefile	2004-08-11 23:57:35.000000000 +0200
+@@ -334,12 +334,12 @@
+ 
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(libdir)
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmico$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmico$(VERSION).a $(DESTDIR)$(libdir)
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+-	$(ILIBCMD) libmico$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmico$(VERSION).$(SOEXT) $(DESTDIR)$(libdir)
+ endif
+ 
+ install-cd: install
+--- mico/aclocal.m4~	2003-10-13 11:49:22.000000000 +0200
++++ mico/aclocal.m4	2004-08-12 00:30:32.000000000 +0200
+@@ -97,8 +97,8 @@
+ 		incdir="${exdir}/include${subexdir}"
+ 		wi_EXTRA_IDIR($incdir)
+ 
+-		libdir="${exdir}/lib${subexdir}"
+-		wi_EXTRA_LDIR($libdir)
++#		libdir="${exdir}/lib${subexdir}"
++#		wi_EXTRA_LDIR($libdir)
+ 
+ 		progdir="${exdir}/bin${subexdirr}"
+ 		wi_EXTRA_PDIR($progdir)
