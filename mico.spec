@@ -2,20 +2,17 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.10
-Release:	0.4
+Release:	1
 License:	GPL/LGPL
 Group:		Libraries
 Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
 # Source0-md5:	0f27a8d66bc57100d762302cdf4868bf
-Patch0:		%{name}-DESTDIR.patch
-# Patch1:		%{name}-gcc295.patch
-# Patch2:		%{name}-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	autoconf
 BuildRequires:	libstdc++-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	readline-devel >= 4.2
 BuildRequires:	tcl-devel
-BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,9 +54,6 @@ Biblioteki statyczne MICO.
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
-# %patch1 -p1
-# %patch2 -p1
 
 %build
 %{__autoconf}
@@ -72,6 +66,7 @@ CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 	--enable-ccm \
 	--enable-coss \
 	--with-gtk=%{_prefix}/X11R6 \
+	--disable-debug \
 	--with-tcl \
 	--with-x \
 	--with-ssl
