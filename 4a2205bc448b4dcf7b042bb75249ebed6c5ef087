@@ -1,0 +1,5 @@
+- added using CVS keywords in %changelog (for automating them).
+
+* Mon Jul  5 1999 Micha³ Zawalich <michalz@box43.gnet.pl>
+  [2.2.7-1]
+- initial version.
