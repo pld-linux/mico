@@ -9,11 +9,15 @@ Group(de):	Libraries
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	Библиотеки
+Group(uk):	Б╕бл╕отеки
 Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-gcc295.patch
 Patch2:		%{name}-gtk+.m4.patch
 URL:		http://www.mico.org/
+BuildRequires:	autoconf
 BuildRequires:	libstdc++-devel
 BuildRequires:	readline-devel >= 4.2
 BuildRequires:	tcl-devel
@@ -36,8 +40,12 @@ Summary:	Include files and documentation
 Summary(pl):	Pliki nagЁowkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -53,8 +61,12 @@ Summary:	Static libraries for writing MICO applications
 Summary(pl):	Biblioteki statyczne MICO
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -92,11 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf CHANGES CONVERT FAQ LICENSE* TODO doc/*.ps
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
