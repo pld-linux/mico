@@ -1,0 +1,317 @@
+diff -Nru mico/admin/Makefile mico.new/admin/Makefile
+--- mico/admin/Makefile	Wed Aug 26 17:22:21 1998
++++ mico.new/admin/Makefile	Sun Jul 11 11:33:29 1999
+@@ -37,21 +37,22 @@
+ 	chmod +x $@
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.sh $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.csh $(INSTDIR)/lib
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	test -f mico-c++   && $(ISCRIPTCMD) mico-c++   $(INSTDIR)/bin
+-	test -f mico-ld    && $(ISCRIPTCMD) mico-ld    $(INSTDIR)/bin
+-	test -f mico-ar    && $(ISCRIPTCMD) mico-ar    $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/lib
++	$(ISCRIPTCMD) mico-setup.sh $(DESTDIR)$(INSTDIR)/lib
++	$(ISCRIPTCMD) mico-setup.csh $(DESTDIR)$(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	test -f mico-c++   && $(ISCRIPTCMD) mico-c++   $(DESTDIR)$(INSTDIR)/bin
++	test -f mico-ld    && $(ISCRIPTCMD) mico-ld    $(DESTDIR)$(INSTDIR)/bin
++	test -f mico-ar    && $(ISCRIPTCMD) mico-ar    $(DESTDIR)$(INSTDIR)/bin
+ ifeq ($(HAVE_DYNAMIC), yes)
+-	test -f mico-shc++ && $(ISCRIPTCMD) mico-shc++ $(INSTDIR)/bin
+-	test -f mico-shld  && $(ISCRIPTCMD) mico-shld  $(INSTDIR)/bin 
++	test -f mico-shc++ && $(ISCRIPTCMD) mico-shc++ $(DESTDIR)$(INSTDIR)/bin
++	test -f mico-shld  && $(ISCRIPTCMD) mico-shld  $(DESTDIR)$(INSTDIR)/bin 
+ endif
+ 
+ install-cd: install
+-	$(ISCRIPTCMD) mico-setup.sh.in $(INSTDIR)/lib
+-	$(ISCRIPTCMD) mico-setup.csh.in $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/lib
++	$(ISCRIPTCMD) mico-setup.sh.in $(DESTDIR)$(INSTDIR)/lib
++	$(ISCRIPTCMD) mico-setup.csh.in $(DESTDIR)$(INSTDIR)/lib
+ 
+ clean:
+ #	rm -f mico-setup.sh mico-setup.csh
+diff -Nru mico/auxdir/Makefile mico.new/auxdir/Makefile
+--- mico/auxdir/Makefile	Wed Jan 20 13:32:53 1999
++++ mico.new/auxdir/Makefile	Sun Jul 11 11:34:24 1999
+@@ -200,12 +200,12 @@
+ 	-$(RM) *.orig
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/lib
+ ifeq ($(HAVE_SHARED), yes)
+-	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
++	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(DESTDIR)$(INSTDIR)/lib; done
+ endif
+ ifeq ($(HAVE_STATIC), yes)
+-	@for i in $(STATIC_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
++	@for i in $(STATIC_LIBS); do $(ILIBCMD) $$i $(DESTDIR)$(INSTDIR)/lib; done
+ endif
+ 
+ install-cd: install
+diff -Nru mico/coss/Makefile mico.new/coss/Makefile
+--- mico/coss/Makefile	Fri Jan 29 11:52:17 1999
++++ mico.new/coss/Makefile	Sun Jul 11 14:12:09 1999
+@@ -140,15 +140,15 @@
+ 	$(RM) *.a *.$(SOEXT)
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/lib
+ ifneq ($(strip $(SUBDIRS)),)
+ ifeq ($(HAVE_SHARED_EXCEPTS), yes)
+-	$(ILIBCMD) libmicocoss$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).$(SOEXT) $(DESTDIR)$(INSTDIR)/lib
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmicocoss$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).a $(DESTDIR)$(INSTDIR)/lib
+ endif
+ else
+-	$(ILIBCMD) libmicocoss$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmicocoss$(VERSION).a $(DESTDIR)$(INSTDIR)/lib
+ endif
+ 	for i in $(SUBDIRS); do $(MAKE) -C $$i install || exit 1; done	
+ endif
+diff -Nru mico/coss/events/Makefile mico.new/coss/events/Makefile
+--- mico/coss/events/Makefile	Mon Mar  1 15:20:01 1999
++++ mico.new/coss/events/Makefile	Sun Jul 11 04:20:19 1999
+@@ -77,8 +77,8 @@
+ 	-$(RM) ../../include/mico/CosEventComm.h
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) eventd $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) eventd $(DESTDIR)$(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -Nru mico/coss/naming/Makefile mico.new/coss/naming/Makefile
+--- mico/coss/naming/Makefile	Mon Feb  1 13:14:20 1999
++++ mico.new/coss/naming/Makefile	Sun Jul 11 04:20:36 1999
+@@ -70,9 +70,9 @@
+ 	-$(RM) naming.h naming.cc ../../include/mico/naming.h naming_skel.cc
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) nsd $(INSTDIR)/bin
+-	$(IBINCMD) nsadmin $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) nsd $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) nsadmin $(DESTDIR)$(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -Nru mico/coss/property/Makefile mico.new/coss/property/Makefile
+--- mico/coss/property/Makefile	Wed Mar 10 17:48:43 1999
++++ mico.new/coss/property/Makefile	Sun Jul 11 04:20:46 1999
+@@ -68,8 +68,8 @@
+ 	-$(RM) propertyd
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) propertyd $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) propertyd $(DESTDIR)$(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -Nru mico/coss/trader/Makefile mico.new/coss/trader/Makefile
+--- mico/coss/trader/Makefile	Mon Mar  1 15:20:05 1999
++++ mico.new/coss/trader/Makefile	Sun Jul 11 04:21:14 1999
+@@ -85,8 +85,8 @@
+ 	-$(RM) $(GENERATED) trader_skel.cc typerepo_skel.cc
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) traderd $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) traderd $(DESTDIR)$(INSTDIR)/bin
+ 
+ generate:
+ 	$(BISON) -d -t -v -o yacc.c yacc.yy
+diff -Nru mico/cpp/Makefile mico.new/cpp/Makefile
+--- mico/cpp/Makefile	Wed Aug 26 17:22:46 1998
++++ mico.new/cpp/Makefile	Sun Jul 11 04:20:02 1999
+@@ -56,8 +56,8 @@
+ 
+ 
+ install: all
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) mico-cpp $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) mico-cpp $(DESTDIR)$(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -Nru mico/daemon/Makefile mico.new/daemon/Makefile
+--- mico/daemon/Makefile	Sat Oct 31 21:19:45 1998
++++ mico.new/daemon/Makefile	Sun Jul 11 04:19:43 1999
+@@ -48,8 +48,8 @@
+ 
+ 
+ install: all
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) micod $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) micod $(DESTDIR)$(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -Nru mico/demo/MakeVars mico.new/demo/MakeVars
+--- mico/demo/MakeVars	Mon Jan 11 18:02:38 1999
++++ mico.new/demo/MakeVars	Sun Jul 11 17:12:17 1999
+@@ -78,14 +78,14 @@
+ endif
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/doc/mico/examples/$(INSTALL_DIR)
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/doc/mico/examples/$(INSTALL_DIR)
+ 	test -z "$(INSTALL_SRCS)" || \
+ 	  eval 'for i in $(INSTALL_SRCS); do \
+-	    $(ISRCCMD) $$i $(INSTDIR)/doc/mico/examples/$(INSTALL_DIR); \
++	    $(ISRCCMD) $$i $(DESTDIR)$(INSTDIR)/doc/mico/examples/$(INSTALL_DIR); \
+ 	  done'
+ 	test -z "$(INSTALL_SCRIPTS)" || \
+ 	  eval 'for i in $(INSTALL_SCRIPTS); do \
+-	    $(ISCRIPTCMD) $$i $(INSTDIR)/doc/mico/examples/$(INSTALL_DIR); \
++	    $(ISCRIPTCMD) $$i $(DESTDIR)$(INSTDIR)/doc/mico/examples/$(INSTALL_DIR); \
+ 	  done'
+ 
+ ifeq (.depend, $(wildcard .depend))
+diff -Nru mico/demo/Makefile mico.new/demo/Makefile
+--- mico/demo/Makefile	Mon Jun  7 18:13:26 1999
++++ mico.new/demo/Makefile	Sun Jul 11 17:11:34 1999
+@@ -44,12 +44,12 @@
+ 	for i in $(DIRS); do $(MAKE) -C $$i clean || exit 1; done
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/doc/mico/examples
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/doc/mico/examples
+ 	sed -e s/@MICO_VERSION@/$(VERSION)/g \
+ 		< MakeVars.install > MakeVars.install.ver
+-	$(ISRCCMD) MakeVars.install.ver $(INSTDIR)/doc/mico/examples/MakeVars
++	$(ISRCCMD) MakeVars.install.ver $(DESTDIR)$(INSTDIR)/doc/mico/examples/MakeVars
+ 	rm -f MakeVars.install.ver
+-	$(ISRCCMD) README $(INSTDIR)/doc/mico/examples
++	$(ISRCCMD) README $(DESTDIR)$(INSTDIR)/doc/mico/examples
+ 	for i in $(INST_DIRS); do $(MAKE) -C $$i install || exit 1; done
+ 
+ install-cd: install
+diff -Nru mico/idl/Makefile mico.new/idl/Makefile
+--- mico/idl/Makefile	Thu May 27 01:31:10 1999
++++ mico.new/idl/Makefile	Sun Jul 11 04:19:05 1999
+@@ -79,8 +79,8 @@
+ 
+ 
+ install: all
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) idl $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) idl $(DESTDIR)$(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -Nru mico/imr/Makefile mico.new/imr/Makefile
+--- mico/imr/Makefile	Thu May 27 00:53:01 1999
++++ mico.new/imr/Makefile	Sun Jul 11 04:18:50 1999
+@@ -99,8 +99,8 @@
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) imr $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) imr $(DESTDIR)$(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -Nru mico/include/Makefile mico.new/include/Makefile
+--- mico/include/Makefile	Sun May 23 20:14:15 1999
++++ mico.new/include/Makefile	Sun Jul 11 04:18:35 1999
+@@ -37,14 +37,14 @@
+ 	echo "#define MICO_BIN_VERSION $(BIN_VER)" >> mico/version.h
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/include
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/include
+ 	for i in *.h; do \
+-	  $(IINCCMD) $$i $(INSTDIR)/include; \
++	  $(IINCCMD) $$i $(DESTDIR)$(INSTDIR)/include; \
+ 	done
+ 	for i in $(DIRS); do \
+-	  $(IDIRCMD) $(INSTDIR)/include/$$i; \
++	  $(IDIRCMD) $(DESTDIR)$(INSTDIR)/include/$$i; \
+ 	  for j in $$i/*; do \
+-	    $(IINCCMD) $$j $(INSTDIR)/include/$$i/; \
++	    $(IINCCMD) $$j $(DESTDIR)$(INSTDIR)/include/$$i/; \
+ 	  done; \
+ 	done
+ 
+diff -Nru mico/ir/Makefile mico.new/ir/Makefile
+--- mico/ir/Makefile	Thu May 27 00:53:05 1999
++++ mico.new/ir/Makefile	Sun Jul 11 04:18:01 1999
+@@ -116,8 +116,8 @@
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) ird $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) ird $(DESTDIR)$(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -Nru mico/man/Makefile mico.new/man/Makefile
+--- mico/man/Makefile	Wed Aug 26 17:25:45 1998
++++ mico.new/man/Makefile	Sun Jul 11 04:17:43 1999
+@@ -26,9 +26,9 @@
+ 
+ install:
+ 	for i in $(DIRS); do \
+-	  $(IDIRCMD) $(SHARED_INSTDIR)/man/$$i; \
++	  $(IDIRCMD) $(DESTDIR)$(SHARED_INSTDIR)/man/$$i; \
+ 	  for j in $$i/*.[1-9]; do $(IMANCMD) $$j \
+-		$(SHARED_INSTDIR)/man/$$i/; done; \
++		$(DESTDIR)$(SHARED_INSTDIR)/man/$$i/; done; \
+ 	done
+ 
+ install-cd: install
+diff -Nru mico/orb/Makefile mico.new/orb/Makefile
+--- mico/orb/Makefile	Mon May 31 21:02:06 1999
++++ mico.new/orb/Makefile	Sun Jul 11 04:17:20 1999
+@@ -196,12 +196,12 @@
+ 	$(RM) *.rpo *.a *.o *~ *.$(SOEXT) .depend
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/lib
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/lib
+ ifeq ($(HAVE_STATIC), yes)
+-	$(ILIBCMD) libmico$(VERSION).a $(INSTDIR)/lib
++	$(ILIBCMD) libmico$(VERSION).a $(DESTDIR)$(INSTDIR)/lib
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+-	$(ILIBCMD) libmico$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	$(ILIBCMD) libmico$(VERSION).$(SOEXT) $(DESTDIR)$(INSTDIR)/lib
+ endif
+ 
+ install-cd: install
+diff -Nru mico/tools/iordump/Makefile mico.new/tools/iordump/Makefile
+--- mico/tools/iordump/Makefile	Wed Nov 18 17:55:48 1998
++++ mico.new/tools/iordump/Makefile	Sun Jul 11 04:16:10 1999
+@@ -41,8 +41,8 @@
+ 	$(POSTLD) $@
+ 
+ install:
+-	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) iordump $(INSTDIR)/bin
++	$(IDIRCMD) $(DESTDIR)$(INSTDIR)/bin
++	$(IBINCMD) iordump $(DESTDIR)$(INSTDIR)/bin
+ 
+ # cleaning
+ 
