@@ -2,10 +2,11 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.0
-Release:	4
+Release:	5
 License:	GPL/LGPL
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
@@ -14,8 +15,7 @@ Patch1:		%{name}-gcc295.patch
 Patch2:		%{name}-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	libstdc++-devel
-BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	readline-devel >= 4.1
+BuildRequires:	readline-devel >= 4.2
 BuildRequires:	tcl-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,19 +71,19 @@ Biblioteki statyczne MICO.
 
 %build
 autoconf
-CXXFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -fno-exceptions `glib-config --cflags`"
+CXXFLAGS="%{rpmcflags} %{!?debug:-fno-exceptions} `glib-config --cflags`"
 %configure \
 	--enable-final \
 	--enable-namespace \
 	--enable-shared \
-	--with-gtk=/usr/X11R6 \
+	--with-gtk=%{_prefix}/X11R6 \
 	--with-tcl \
 	--with-x \
 	--enable-speed-tune \
 	--disable-mini-stl \
 	--disable-debug
 
-%{__make} EHFLAGS="-fexceptions %{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
+%{__make} EHFLAGS="%{!?debug:-fno-exceptions} %{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
