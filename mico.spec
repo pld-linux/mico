@@ -2,15 +2,16 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.0
-Release:	3
+Release:	4
 License:	GPL/LGPL
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-gcc295.patch
-Patch2:		mico-gtk+.m4.patch
+Patch2:		%{name}-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
@@ -34,6 +35,7 @@ platformy implementacji standardu CORBA 2.3.
 Summary:	Include files and documentation
 Summary(pl):	Pliki nag³owkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -50,6 +52,7 @@ korzystaj±cych z MICO jak pliki nag³ówkowe oraz dokumentacjê.
 Summary:	Static libraries for writing MICO applications
 Summary(pl):	Biblioteki statyczne MICO
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -68,9 +71,7 @@ Biblioteki statyczne MICO.
 
 %build
 autoconf
-CXXFLAGS="$RPM_OPT_FLAGS -fno-exceptions `glib-config --cflags`"
-LDFLAGS="-s"
-export CXXFLAGS LDFLAGS
+CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{!debug:-O -g} -fno-exceptions `glib-config --cflags`"
 %configure \
 	--enable-final \
 	--enable-namespace \
@@ -82,17 +83,14 @@ export CXXFLAGS LDFLAGS
 	--disable-mini-stl \
 	--disable-debug
 
-%{__make} EHFLAGS="-fexceptions $RPM_OPT_FLAGS"
+%{__make} EHFLAGS="-fexceptions %{!?debug:$RPM_OPT_FLAGS}%{!debug:-O -g}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man?/* \
-	CHANGES CONVERT FAQ LICENSE* TODO doc/*.ps
+gzip -9nf CHANGES CONVERT FAQ LICENSE* TODO doc/*.ps
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
