@@ -71,7 +71,7 @@ Biblioteki statyczne MICO.
 
 %build
 autoconf
-CXXFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -fno-exceptions `glib-config --cflags`"
+CXXFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -fno-exceptions `glib-config --cflags`"
 %configure \
 	--enable-final \
 	--enable-namespace \
@@ -83,7 +83,7 @@ CXXFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -fno-exceptions `glib-config 
 	--disable-mini-stl \
 	--disable-debug
 
-%{__make} EHFLAGS="-fexceptions %{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}"
+%{__make} EHFLAGS="-fexceptions %{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
