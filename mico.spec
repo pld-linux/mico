@@ -93,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	INSTDIR=$RPM_BUILD_ROOT%{_prefix} \
+	DESTDIR=$RPM_BUILD_ROOT \
 	SHARED_INSTDIR=$RPM_BUILD_ROOT%{_datadir}
 
 %clean
