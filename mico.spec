@@ -2,7 +2,7 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.0
-Release:	2
+Release:	3
 License:	GPL/LGPL
 Group:		Libraries
 Group(fr):	Librairies
