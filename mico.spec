@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES CONVERT FAQ LICENSE* TODO
+%doc CHANGES CONVERT FAQ LICENSE TODO
 %attr(755,root,root) %{_bindir}/eventd
 %attr(755,root,root) %{_bindir}/idl
 %attr(755,root,root) %{_bindir}/imr
