@@ -23,14 +23,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 MICO (MICO Is CORBA) is a freely available and fully compliant
-implementation of the CORBA 2.3 standard Object Request Broker. The mico
-package contains the shared libraries and demons needed to run MICO
-applications.
+implementation of the CORBA 2.3 standard Object Request Broker. The
+mico package contains the shared libraries and demons needed to run
+MICO applications.
 
 %description -l pl
-Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA). Biblioteka ta
-dostarcza w pe³ni sprawnej i przenoszolnej na inne platformy implementacji
-standardu CORBA 2.3.
+Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA).
+Biblioteka ta dostarcza w pe³ni sprawnej i przenoszolnej na inne
+platformy implementacji standardu CORBA 2.3.
 
 %package devel
 Summary:	Include files and documentation
@@ -41,14 +41,14 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
-Contains the files nessesary to develop applications using MICO: header
-files, man pages and ps documentation.
+Contains the files nessesary to develop applications using MICO:
+header files, man pages and ps documentation.
 
 %description -l pl devel
-Zawiera niezbêdne pliki do tworzenia i kompilacji aplikacji korzystaj±cych
-z MICO jak pliki nag³ówkowe oraz dokumentacjê.
+Zawiera niezbêdne pliki do tworzenia i kompilacji aplikacji
+korzystaj±cych z MICO jak pliki nag³ówkowe oraz dokumentacjê.
 
-%package     static
+%package static
 Summary:	Static libraries for writing MICO applications
 Summary(pl):	Biblioteki statyczne MICO
 Group:		Development/Libraries
@@ -87,7 +87,7 @@ export CXXFLAGS LDFLAGS
 make EHFLAGS="-fexceptions $RPM_OPT_FLAGS"
 
 %install
-rm -fr $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=$RPM_BUILD_ROOT
 
@@ -132,4 +132,5 @@ rm -fr $RPM_BUILD_ROOT
 %{_includedir}/*
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
