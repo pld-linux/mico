@@ -2,7 +2,7 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.11
-Release:	5
+Release:	6
 License:	GPL/LGPL
 Group:		Libraries
 Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
@@ -27,8 +27,8 @@ MICO applications.
 
 %description -l pl
 Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA).
-Biblioteka ta dostarcza w pe³ni sprawnej i przenoszolnej na inne
-platformy implementacji standardu CORBA 2.3.
+Biblioteka ta dostarcza w pe³ni sprawn± i miêdzyplatformow±
+implementacjê standardu CORBA 2.3.
 
 %package devel
 Summary:	Include files and documentation
@@ -42,7 +42,7 @@ header files, man pages and ps documentation.
 
 %description devel -l pl
 Zawiera niezbêdne pliki do tworzenia i kompilacji aplikacji
-korzystaj±cych z MICO jak pliki nag³ówkowe oraz dokumentacjê.
+korzystaj±cych z MICO, takie jak pliki nag³ówkowe oraz dokumentacjê.
 
 %package static
 Summary:	Static libraries for writing MICO applications
