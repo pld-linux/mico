@@ -2,18 +2,19 @@ Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.0
-Release:	1
-Copyright:	GPL/LGPL
+Release:	2
+License:	GPL/LGPL
 Group:		Libraries
+Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source:		ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
+Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
 Patch0:		mico-DESTDIR.patch
 Patch1:		mico-gcc295.patch
 Patch2:		mico-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	readline-devel
+BuildRequires:	readline-devel >= 4.1
 BuildRequires:	tcl-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -22,21 +23,22 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 MICO (MICO Is CORBA) is a freely available and fully compliant
-implementation of the CORBA 2.3 standard Object Request Broker.  The mico
+implementation of the CORBA 2.3 standard Object Request Broker. The mico
 package contains the shared libraries and demons needed to run MICO
 applications.
 
 %description -l pl
-Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA). Biblioteka
-ta dostarcza w pe³ni sprawnej i przenoszolnej na inne platformy
-implementacji standardu CORBA 2.3.
+Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA). Biblioteka ta
+dostarcza w pe³ni sprawnej i przenoszolnej na inne platformy implementacji
+standardu CORBA 2.3.
 
 %package devel
 Summary:	Include files and documentation
 Summary(pl):	Pliki nag³owkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Requires: 	%{name} = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 Contains the files nessesary to develop applications using MICO: header
@@ -50,6 +52,7 @@ z MICO jak pliki nag³ówkowe oraz dokumentacjê.
 Summary:	Static libraries for writing MICO applications
 Summary(pl):	Biblioteki statyczne MICO
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
