@@ -9,6 +9,7 @@ Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
 # Source0-md5:	669d98ec5da2f6c50937a2a25e797eec
 URL:		http://www.mico.org/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gtk+-devel
@@ -70,7 +71,7 @@ CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 	--enable-final \
 	--enable-ccm \
 	--enable-coss \
-	--with-gtk=%{_prefix}/X11R6 \
+	--with-gtk=/usr/X11R6 \
 	--disable-debug \
 	--with-tcl \
 	--with-x \
