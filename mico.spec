@@ -81,8 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf CHANGES CONVERT FAQ LICENSE* TODO doc/*.ps
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -91,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE*.gz FAQ.gz TODO.gz CONVERT.gz CHANGES.gz
+%doc CHANGES CONVERT FAQ LICENSE* TODO
 %attr(755,root,root) %{_bindir}/eventd
 %attr(755,root,root) %{_bindir}/idl
 %attr(755,root,root) %{_bindir}/imr
@@ -110,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/*.ps.gz
+%doc doc/*.ps
 %attr(755,root,root) %{_bindir}/mico-c++
 %attr(755,root,root) %{_bindir}/mico-ld
 %attr(755,root,root) %{_bindir}/mico-shc++
