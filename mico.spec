@@ -1,15 +1,15 @@
 Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
-Version:	2.3.0
-Release:	5
+Version:	2.3.10
+Release:	0.4
 License:	GPL/LGPL
 Group:		Libraries
-Source0:	ftp://diamant.vsb.cs.uni-frankfurt.de/pub/projects/mico/%{name}-%{version}.tar.gz
-# Source0-md5:	787e1bb9e49d41e62d560c0a86046782
+Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
+# Source0-md5:	0f27a8d66bc57100d762302cdf4868bf
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-gcc295.patch
-Patch2:		%{name}-gtk+.m4.patch
+# Patch1:		%{name}-gcc295.patch
+# Patch2:		%{name}-gtk+.m4.patch
 URL:		http://www.mico.org/
 BuildRequires:	autoconf
 BuildRequires:	libstdc++-devel
@@ -57,30 +57,38 @@ Biblioteki statyczne MICO.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch0 -p1
+# %patch1 -p1
+# %patch2 -p1
 
 %build
 %{__autoconf}
-CXXFLAGS="%{rpmcflags} `gtk-config --cflags` -fexceptions"
+CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 %configure \
-	--enable-final \
 	--enable-namespace \
 	--enable-shared \
+	--enable-static \
+	--enable-dynamic \
+	--enable-ccm \
+	--enable-coss \
 	--with-gtk=%{_prefix}/X11R6 \
 	--with-tcl \
 	--with-x \
-	--enable-speed-tune \
-	--disable-mini-stl \
-	--disable-debug
+	--with-ssl
+
+# with those options mico doesn't compile for me :/
+#	--enable-speed-tune \
+#	--disable-externalize \
+#	--disable-debug \
+#	--disable-except \
+#	--disable-mini-stl \
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install INSTDIR=$RPM_BUILD_ROOT/%{_prefix} SHARED_INSTDIR=$RPM_BUILD_ROOT/%{_datadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
