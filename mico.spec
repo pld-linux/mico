@@ -71,7 +71,7 @@ Biblioteki statyczne MICO.
 
 %build
 autoconf
-CXXFLAGS="%{rpmcflags} `glib-config --cflags`"
+CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 %configure \
 	--enable-final \
 	--enable-namespace \
@@ -83,7 +83,7 @@ CXXFLAGS="%{rpmcflags} `glib-config --cflags`"
 	--disable-mini-stl \
 	--disable-debug
 
-%{__make} EHFLAGS="%{!?debug:-fno-exceptions}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
