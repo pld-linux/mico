@@ -71,7 +71,7 @@ Biblioteki statyczne MICO.
 
 %build
 autoconf
-CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
+CXXFLAGS="%{rpmcflags} `gtk-config --cflags` -fexceptions"
 %configure \
 	--enable-final \
 	--enable-namespace \
