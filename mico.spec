@@ -16,7 +16,7 @@ BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	readline-devel
 BuildRequires:	tcl-devel
 BuildRequires:	gtk+-devel
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
 
