@@ -57,6 +57,8 @@ Biblioteki statyczne MICO.
 
 %build
 %{__autoconf}
+cp -f %{_datadir}/automake/install-sh admin
+cp -f %{_datadir}/automake/config.sub admin
 CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 %configure \
 	--enable-namespace \
