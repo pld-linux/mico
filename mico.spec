@@ -11,6 +11,7 @@ URL:		http://www.mico.org/
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %define _prefix /usr/X11R6
+%define	_mandir	%{_prefix}/man
 
 %description
 The acronym MICO expands to MICO Is CORBA. This library provide a freely
@@ -55,7 +56,8 @@ make
 %install
 rm -fr $RPM_BUILD_ROOT
 
-make install DESTDIR=$RPM_BUILD_ROOT
+make install INSTDIR=$RPM_BUILD_ROOT%{_prefix} \
+	SHARED_INSTDIR=$RPM_BUILD_ROOT%{_prefix}
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
 
