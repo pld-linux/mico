@@ -11,6 +11,11 @@ Patch0:		mico-DESTDIR.patch
 Patch1:		mico-gcc295.patch
 Patch2:		mico-gtk+.m4.patch
 URL:		http://www.mico.org/
+BuildRequires:	libstdc++-devel
+BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	readline-devel
+BuildRequires:	tcl-devel
+BuildRequires:	gtk+-devel
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %define		_prefix		/usr
@@ -75,13 +80,13 @@ export CXXFLAGS LDFLAGS
 	--enable-speed-tune \
 	--disable-mini-stl \
 	--disable-debug
+
 make EHFLAGS="-fexceptions $RPM_OPT_FLAGS"
 
 %install
 rm -fr $RPM_BUILD_ROOT
 
-make install INSTDIR=$RPM_BUILD_ROOT%{_prefix} \
-	SHARED_INSTDIR=$RPM_BUILD_ROOT%{_prefix}
+make install DESTDIR=$RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
 
