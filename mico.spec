@@ -9,8 +9,8 @@ Source0:	http://www.mico.org/%{name}-%{version}.tar.gz
 # Source0-md5:	0f27a8d66bc57100d762302cdf4868bf
 URL:		http://www.mico.org/
 BuildRequires:	autoconf
-BuildRequires:	libstdc++-devel
 BuildRequires:	gtk+-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	readline-devel >= 4.2
 BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,7 +83,7 @@ CXXFLAGS="%{rpmcflags} `gtk-config --cflags`"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install INSTDIR=$RPM_BUILD_ROOT/%{_prefix} SHARED_INSTDIR=$RPM_BUILD_ROOT/%{_datadir}
+%{__make} install INSTDIR=$RPM_BUILD_ROOT%{_prefix} SHARED_INSTDIR=$RPM_BUILD_ROOT%{_datadir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
