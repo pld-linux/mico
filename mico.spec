@@ -1,3 +1,6 @@
+# TODO:
+# - do not require for `hostname' to be resolvable when building
+
 Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
 Summary(pl):	Implementacja standardu CORBA 2.3
 Name:		mico
