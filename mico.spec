@@ -37,7 +37,7 @@ implementacjê standardu CORBA 2.3.
 Summary:	Include files and documentation
 Summary(pl):	Pliki nag³owkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Contains the files nessesary to develop applications using MICO:
@@ -51,7 +51,7 @@ korzystaj±cych z MICO, takie jak pliki nag³ówkowe oraz dokumentacjê.
 Summary:	Static libraries for writing MICO applications
 Summary(pl):	Biblioteki statyczne MICO
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for writing MICO applications.
