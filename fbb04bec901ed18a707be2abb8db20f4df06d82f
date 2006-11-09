@@ -1,0 +1,8 @@
+- updated to 2.3.0,
+- changed install prefix to /usr,
+- added static subpackage,
+- man pages moved to main package,
+- added --enable-final, --enable-namespace, --enable-shared, --with-gtk,
+  --with-tcl, --with-x, --enable-speed-tune to ./cinfigure parameters,
+- changed Group to Libraries and Development/Libraries,
+- %{_libdir}/mico-setup.* files moved to devel.
