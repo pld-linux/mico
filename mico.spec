@@ -2,7 +2,7 @@
 # - do not require for `hostname' to be resolvable when building
 
 Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
-Summary(pl):	Implementacja standardu CORBA 2.3
+Summary(pl.UTF-8):   Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.11
 Release:	7
@@ -28,14 +28,14 @@ implementation of the CORBA 2.3 standard Object Request Broker. The
 mico package contains the shared libraries and demons needed to run
 MICO applications.
 
-%description -l pl
+%description -l pl.UTF-8
 Akronim MICO oznacza "MICO jest CORBA" (ang. MICO Is CORBA).
-Biblioteka ta dostarcza w pe³ni sprawn± i miêdzyplatformow±
-implementacjê standardu CORBA 2.3.
+Biblioteka ta dostarcza w peÅ‚ni sprawnÄ… i miÄ™dzyplatformowÄ…
+implementacjÄ™ standardu CORBA 2.3.
 
 %package devel
 Summary:	Include files and documentation
-Summary(pl):	Pliki nag³owkowe oraz dokumentacja do biblioteki
+Summary(pl.UTF-8):   Pliki nagÅ‚owkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -43,20 +43,20 @@ Requires:	%{name} = %{version}-%{release}
 Contains the files nessesary to develop applications using MICO:
 header files, man pages and ps documentation.
 
-%description devel -l pl
-Zawiera niezbêdne pliki do tworzenia i kompilacji aplikacji
-korzystaj±cych z MICO, takie jak pliki nag³ówkowe oraz dokumentacjê.
+%description devel -l pl.UTF-8
+Zawiera niezbÄ™dne pliki do tworzenia i kompilacji aplikacji
+korzystajÄ…cych z MICO, takie jak pliki nagÅ‚Ã³wkowe oraz dokumentacjÄ™.
 
 %package static
 Summary:	Static libraries for writing MICO applications
-Summary(pl):	Biblioteki statyczne MICO
+Summary(pl.UTF-8):   Biblioteki statyczne MICO
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for writing MICO applications.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne MICO.
 
 %prep
