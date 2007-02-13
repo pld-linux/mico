@@ -2,7 +2,7 @@
 # - do not require for `hostname' to be resolvable when building
 
 Summary:	An implementation of the CORBA 2.3 standard Object Request Broker
-Summary(pl.UTF-8):   Implementacja standardu CORBA 2.3
+Summary(pl.UTF-8):	Implementacja standardu CORBA 2.3
 Name:		mico
 Version:	2.3.11
 Release:	7
@@ -35,7 +35,7 @@ implementację standardu CORBA 2.3.
 
 %package devel
 Summary:	Include files and documentation
-Summary(pl.UTF-8):   Pliki nagłowkowe oraz dokumentacja do biblioteki
+Summary(pl.UTF-8):	Pliki nagłowkowe oraz dokumentacja do biblioteki
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -49,7 +49,7 @@ korzystających z MICO, takie jak pliki nagłówkowe oraz dokumentację.
 
 %package static
 Summary:	Static libraries for writing MICO applications
-Summary(pl.UTF-8):   Biblioteki statyczne MICO
+Summary(pl.UTF-8):	Biblioteki statyczne MICO
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
